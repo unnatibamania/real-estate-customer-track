@@ -9,7 +9,7 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 import { useState } from "react";
 
-import { colors } from "@/constants/Colors";
+import { useRouter } from "expo-router";
 
 import { loginStyles } from "@/styles/auth.styles";
 
@@ -19,11 +19,15 @@ export const SignIn = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
+  const router = useRouter();
+
   const handleLogin = () => {
     if (!email || !password) {
       // Show validation error
       return;
     }
+
+    router.push("/home");
 
     setIsLoading(true);
     // Implement your login logic here

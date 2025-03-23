@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import { authStyles } from "@/styles/auth.styles";
 import { SignIn } from "@/components/auth/Login";
 import { SignUp } from "@/components/auth/SignUp";
