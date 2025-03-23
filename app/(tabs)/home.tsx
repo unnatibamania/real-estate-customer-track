@@ -1,17 +1,12 @@
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
-import { useAuth } from "@/contexts/auth";
 
 export default function Home() {
-  const { user, signOut } = useAuth();
-
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Welcome to Home Page</Text>
-      <Text style={styles.subtitle}>
-        You are logged in as: {user?.email || "User"}
-      </Text>
+      <Text style={styles.subtitle}>You are logged in as:</Text>
 
-      <TouchableOpacity style={styles.button} onPress={signOut}>
+      <TouchableOpacity style={styles.button}>
         <Text style={styles.buttonText}>Sign Out</Text>
       </TouchableOpacity>
     </View>
