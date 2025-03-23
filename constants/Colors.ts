@@ -26,7 +26,7 @@
 // };
 
 export const colors = {
-  primary: "#000000",
+  primary: "#6E947C",
   secondary: "#111111",
   tertiary: "#222222",
 };
