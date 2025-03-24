@@ -24,7 +24,8 @@ const PROPERTIES = [
     name: "Luxury Villa",
     location: "South Delhi",
     price: "₹2.5 Cr",
-    image: "https://source.unsplash.com/random/300x200/?villa",
+    image:
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     enquiries: 24,
   },
   {
@@ -32,7 +33,8 @@ const PROPERTIES = [
     name: "Beachfront Apartment",
     location: "Mumbai",
     price: "₹1.8 Cr",
-    image: "https://source.unsplash.com/random/300x200/?apartment",
+    image:
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     enquiries: 18,
   },
   {
@@ -40,7 +42,9 @@ const PROPERTIES = [
     name: "Garden Townhouse",
     location: "Bangalore",
     price: "₹1.2 Cr",
-    image: "https://source.unsplash.com/random/300x200/?townhouse",
+    image:
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+
     enquiries: 31,
   },
 ];
@@ -74,7 +78,7 @@ const CUSTOMERS = [
 ];
 
 // Mock data for weekly enquiries
-const generateWeeklyData = (startDate) => {
+const generateWeeklyData = (startDate: Date) => {
   const weekData = [];
   const date = new Date(startDate);
 
@@ -92,7 +96,13 @@ const generateWeeklyData = (startDate) => {
 
 export default function Home() {
   const [currentWeekStart, setCurrentWeekStart] = useState(new Date());
-  const [weeklyData, setWeeklyData] = useState([]);
+  const [weeklyData, setWeeklyData] = useState<
+    {
+      day: string;
+      date: number;
+      enquiries: number;
+    }[]
+  >([]);
 
   // Get the most enquired property
   const topProperty = [...PROPERTIES].sort(
