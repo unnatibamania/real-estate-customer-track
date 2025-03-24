@@ -157,10 +157,6 @@ export default function Home() {
     <SafeAreaView style={styles.safeContainer}>
       <StatusBar backgroundColor="#f5f7fa" barStyle="dark-content" />
 
-      <View style={styles.header}>
-        <Text style={styles.headerTitle}>Dashboard</Text>
-      </View>
-
       <ScrollView
         style={styles.scrollView}
         contentContainerStyle={styles.scrollViewContent}
