@@ -3,9 +3,39 @@ import { View, Text, TouchableOpacity } from "react-native";
 import { authStyles } from "@/styles/auth.styles";
 import { SignIn } from "@/components/auth/Login";
 import { SignUp } from "@/components/auth/SignUp";
+import { useRouter } from "expo-router";
+import { useSSO } from "@clerk/clerk-expo";
+import { useAuth } from "@clerk/clerk-expo";
 
 export default function Login() {
   const [activeTab, setActiveTab] = useState("login");
+  const { startSSOFlow } = useSSO();
+
+  const { isSignedIn } = useAuth();
+
+  const router = useRouter();
+
+  const handleGoogleSSOLogin = async () => {
+    try {
+      const { setActive, createdSessionId } = await startSSOFlow({
+        strategy: "oauth_google",
+      });
+
+      if (setActive && createdSessionId) {
+        setActive({ session: createdSessionId });
+      }
+
+      if (createdSessionId) {
+        router.push("/(tabs)/home");
+      }
+    } catch (error) {
+      console.error("Error during SSO flow:", error);
+    }
+  };
+
+  if (isSignedIn) {
+    router.push("/(tabs)/home");
+  }
 
   return (
     <View style={authStyles.container}>
@@ -55,7 +85,11 @@ export default function Login() {
         </View>
 
         {/* Tab Content */}
-        {activeTab === "login" ? <SignIn /> : <SignUp />}
+        {activeTab === "login" ? (
+          <SignIn handleGoogleSSOLogin={handleGoogleSSOLogin} />
+        ) : (
+          <SignUp handleGoogleSSOLogin={handleGoogleSSOLogin} />
+        )}
       </View>
     </View>
   );

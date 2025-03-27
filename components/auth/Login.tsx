@@ -13,7 +13,11 @@ import { useRouter } from "expo-router";
 
 import { loginStyles } from "@/styles/auth.styles";
 
-export const SignIn = () => {
+export const SignIn = ({
+  handleGoogleSSOLogin,
+}: {
+  handleGoogleSSOLogin: () => void;
+}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -37,8 +41,7 @@ export const SignIn = () => {
   };
 
   const handleGoogleLogin = () => {
-    // Implement Google authentication
-    console.log("Google login pressed");
+    handleGoogleSSOLogin();
   };
 
   return (

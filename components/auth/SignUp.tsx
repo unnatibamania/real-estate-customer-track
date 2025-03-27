@@ -5,7 +5,11 @@ import { Ionicons } from "@expo/vector-icons";
 import { TextInput, TouchableOpacity } from "react-native";
 import { signupStyles } from "@/styles/auth.styles";
 
-export const SignUp = () => {
+export const SignUp = ({
+  handleGoogleSSOLogin,
+}: {
+  handleGoogleSSOLogin: () => void;
+}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -25,8 +29,7 @@ export const SignUp = () => {
   };
 
   const handleGoogleLogin = () => {
-    // Implement Google authentication
-    console.log("Google login pressed");
+    handleGoogleSSOLogin();
   };
 
   return (
