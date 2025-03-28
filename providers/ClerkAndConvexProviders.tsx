@@ -20,7 +20,7 @@ export default function ClerkAndConvexProvider({
   const clerkPubKey = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY;
 
   if (!clerkPubKey) {
-    throw new Error("Missing Publishable Ke");
+    throw new Error("Missing Publishable Key");
   }
 
   return (

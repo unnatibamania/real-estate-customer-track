@@ -48,6 +48,8 @@ http.route({
       const email = email_addresses[0].email_address;
       const name = `${first_name} ${last_name}`.trim();
 
+      console.log(email, name, image_url, id);
+
       try {
         await ctx.runMutation(api.user.createUser, {
           email,
@@ -55,13 +57,16 @@ http.route({
           imageUrl: image_url,
           clerkId: id,
           username: email.split("@")[0],
-          bio: `Hey, I'm ${name}`,
         });
+
+        console.log("User created");
       } catch (error) {
         console.error(error);
         return new Response("Failed to create user", { status: 500 });
       }
     }
+
+    console.log("End of webhook");
 
     return new Response("Webhook received", { status: 200 });
   }),

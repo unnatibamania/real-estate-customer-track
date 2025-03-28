@@ -5,6 +5,9 @@ import { View, Text, Image, StyleSheet, SafeAreaView } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { colors } from "@/constants/Colors";
+import { TouchableOpacity } from "react-native";
+import { useAuth } from "@clerk/clerk-expo";
+import { useRouter } from "expo-router";
 
 // User info component to display at the top
 function UserHeaderInfo() {
@@ -16,7 +19,8 @@ function UserHeaderInfo() {
   };
 
   const insets = useSafeAreaInsets();
-
+  const { signOut } = useAuth();
+  const router = useRouter();
   return (
     <SafeAreaView style={[styles.headerContainer, { padding: 4 }]}>
       <View style={styles.userInfoContainer}>
@@ -25,6 +29,15 @@ function UserHeaderInfo() {
           <Text style={styles.userName}>{user.name}</Text>
           <Text style={styles.userEmail}>{user.email}</Text>
         </View>
+
+        <TouchableOpacity
+          onPress={() => {
+            signOut();
+            router.push("/(auth)/login");
+          }}
+        >
+          <Ionicons name="log-out" size={24} color="black" />
+        </TouchableOpacity>
       </View>
     </SafeAreaView>
   );

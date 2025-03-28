@@ -9,6 +9,7 @@ import { tokenCache } from "@/cache";
 import { TokenCache } from "@clerk/clerk-expo/dist/cache/types";
 import { useColorScheme } from "@/hooks/useColorScheme";
 import InitialLayout from "@/components/InitialLayout";
+import ClerkAndConvexProvider from "@/providers/ClerkAndConvexProviders";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -36,15 +37,10 @@ export default function RootLayout() {
   }
 
   return (
-    <ClerkProvider
-      tokenCache={tokenCache as TokenCache}
-      publishableKey={clerkPubKey as string}
-    >
-      <ClerkLoaded>
-        <Stack>
-          <InitialLayout />
-        </Stack>
-      </ClerkLoaded>
-    </ClerkProvider>
+    <ClerkAndConvexProvider>
+      <Stack>
+        <InitialLayout />
+      </Stack>
+    </ClerkAndConvexProvider>
   );
 }
